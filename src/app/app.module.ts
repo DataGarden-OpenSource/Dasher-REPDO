@@ -3,14 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { DasherComponent } from './dashboard/dasher/dasher.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DasherComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GoogleChartsModule.forRoot({ mapsApiKey: 'AIzaSyCyg8PduZ1Av2zYlunDtl0w73vTGQmB48U' }),
   ],
   providers: [],
   bootstrap: [AppComponent]

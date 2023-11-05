@@ -1,0 +1,30 @@
+<div class="container-fluid" style="background-color: #81d4fa;">
+  <div class="row align-items-center">
+    <div class="col-8">
+      <google-chart [options]="myOptions" [type]="myType" [data]="myData" [columns]="chartColumns"></google-chart>
+    </div>
+    <div class="col-4">
+      <div class="card border-danger py-2 text-center">
+        <div class="card-title text-danger">
+          INFORMACIÓN POR PROVINCIA
+        </div>
+        <div class="card-subtitle">
+          <b id="nombre-provincia">--</b>
+        </div>
+        <div class="card-body">
+          <div class="list-group">
+            <div class="list-group-item">Indice de pobreza: <span id="indice-p">--</span></div>
+            <div class="list-group-item">Viviendas totales: <span id="viviendas-t">--</span></div>
+            <div class="list-group-item">Viviendas sin electricidad: <span id="viviendas-se">--</span> </div>
+            <div class="list-group-item">Generadores por provincia: <span id="generadores">--</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-4">
+      <iframe src="https://datos.bancomundial.org/share/widget?end=2021&indicators=EG.ELC.ACCS.ZS&locations=ZJ-DO&start=1991&view=chart" width='450' height='300' frameBorder='0' scrolling="no" ></iframe>
+    </div>
+  </div>
+</div>
