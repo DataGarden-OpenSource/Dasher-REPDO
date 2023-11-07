@@ -58,6 +58,8 @@ export class DasherComponent implements OnInit {
     backgroundColor: '#81d4fa',
   }
 
+  indice = 'Indice de pobreza energetica';
+
   ngOnInit(): void {
   }
 
