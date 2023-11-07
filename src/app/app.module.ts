@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { DasherComponent } from './dashboard/dasher/dasher.component';
 import { SharedModule } from './shared/shared.module';
+import { NoElectrificadoChartComponent } from './dashboard/dasher/no-electrificado-chart/no-electrificado-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DasherComponent
+    DasherComponent,
+    NoElectrificadoChartComponent
   ],
   imports: [
     BrowserModule,
