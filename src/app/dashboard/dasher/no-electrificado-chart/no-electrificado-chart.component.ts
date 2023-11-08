@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NoElectrificados } from 'src/app/core/models/no-electrificados';
 import { CsvService } from 'src/app/services/csvreader.service';
 
@@ -8,6 +8,8 @@ import { CsvService } from 'src/app/services/csvreader.service';
   styleUrls: ['./no-electrificado-chart.component.scss']
 })
 export class NoElectrificadoChartComponent implements OnInit {
+
+  @Input() selectedProvince: string = 'Provincia';
 
   constructor(private csvService: CsvService) { }
 
