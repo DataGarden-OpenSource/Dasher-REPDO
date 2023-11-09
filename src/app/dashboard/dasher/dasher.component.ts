@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
+import { NoElectrificados, mapNoElectrificados } from 'src/app/core/models/no-electrificados';
+import { CsvService } from 'src/app/services/csvreader.service';
 
 @Component({
   selector: 'app-dasher',
@@ -8,7 +10,7 @@ import { ChartType } from 'angular-google-charts';
 })
 export class DasherComponent implements OnInit {
 
-  constructor() { }
+  constructor(private csvService: CsvService) { }
 
   myType = ChartType.GeoChart
 
@@ -62,7 +64,17 @@ export class DasherComponent implements OnInit {
 
   indice = 'Indice de pobreza energetica';
 
+  noElectrificadosData : NoElectrificados[] = [];
+
   ngOnInit(): void {
+    this.csvService.getCsvData<NoElectrificados>('assets/csv/no-electrificados.csv').subscribe(
+      data => {;
+        this.noElectrificadosData = data.map((item: NoElectrificados) => { return mapNoElectrificados(item) });
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
   }
 
 }

@@ -7,6 +7,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { DasherComponent } from './dashboard/dasher/dasher.component';
 import { SharedModule } from './shared/shared.module';
 import { NoElectrificadoChartComponent } from './dashboard/dasher/no-electrificado-chart/no-electrificado-chart.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { NoElectrificadoChartComponent } from './dashboard/dasher/no-electrifica
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    HighchartsChartModule,
+    HttpClientModule,
     GoogleChartsModule.forRoot({ mapsApiKey: 'AIzaSyCyg8PduZ1Av2zYlunDtl0w73vTGQmB48U' }),
   ],
   providers: [],

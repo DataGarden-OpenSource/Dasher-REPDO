@@ -8,7 +8,7 @@ export interface NoElectrificados {
 export function mapNoElectrificados(data: any): NoElectrificados {
   return {
     provincia: data.Provincia,
-    noElectrificados: parseFloat(data.NoElectrificados.replace('%', '')) / 100,
+    noElectrificados: parseFloat(data['No Electrificados'].replace('%', '')) / 100,
     coccionCombustiblesNoModernos: parseFloat(data['Cocción Combustibles No Modernos'].replace('%', '')) / 100
   };
 }
