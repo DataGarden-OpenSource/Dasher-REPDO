@@ -10,8 +10,8 @@ import { CsvService } from 'src/app/services/csvreader.service';
   styleUrls: ['./no-electrificado-chart.component.scss']
 })
 export class NoElectrificadoChartComponent implements OnInit, OnChanges {
-  @Input() title: string = 'No Electrificados';
-  @Input() selectedProvince: string = 'Distrito Nacional';
+  @Input() title: string = 'Viviendas no Electrificadas de ';
+  @Input() selectedProvince: string = 'Azua';
   @Input() noElectrificadosData: NoElectrificados[] = [];
 
   public Highcharts: typeof Highcharts = Highcharts; // required
@@ -23,7 +23,7 @@ export class NoElectrificadoChartComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['noElectrificadosData']){
+    if(changes['noElectrificadosData']||changes['selectedProvince']){
       this.loadChart();
     }
   }
@@ -43,7 +43,7 @@ export class NoElectrificadoChartComponent implements OnInit, OnChanges {
         plotShadow: false
       },
       title: {
-        text: 'No Electrificados en Provincias'
+        text: this.title + this.selectedProvince
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -55,9 +55,8 @@ export class NoElectrificadoChartComponent implements OnInit, OnChanges {
       },
       plotOptions: {
         pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
           dataLabels: {
+            alignTo: 'connectors',
             enabled: true,
             format: '<b>{point.name}</b>: {point.percentage:.1f} %'
           }
@@ -66,17 +65,17 @@ export class NoElectrificadoChartComponent implements OnInit, OnChanges {
       series: [{
         type: 'pie',
         name: 'Porcentaje',
-        data: [{
-            name: 'No Electrificados',
-            y: this.provinceData?.noElectrificados,
-            value: this.provinceData?.noElectrificados// example to select a specific area
-          },
+        data: [
           {
             name: 'Electrificados',
             y: 1 - this.provinceData?.noElectrificados!,
             value: 1 - this.provinceData?.noElectrificados!// example to select a specific area
           },
-
+          {
+            name: 'No Electrificados',
+            y: this.provinceData?.noElectrificados,
+            value: this.provinceData?.noElectrificados// example to select a specific area
+          }
         ]
       }]
     };

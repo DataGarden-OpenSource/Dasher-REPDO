@@ -16,7 +16,7 @@ export class DasherComponent implements OnInit {
 
   myData = [
     ['Azua', 63.5],
-    ['Bahoruco', 65.4],
+    ['Baoruco', 65.4],
     ['Barahona', 61.1],
     ['Dajabón', 54.3],
     ['Distrito Nacional', 28.3],
@@ -60,9 +60,12 @@ export class DasherComponent implements OnInit {
     backgroundColor: '#81d4fa',
   }
 
-  selectedProvince: string = 'Provincia';
+  selectedProvince: string = 'Azua';
 
-  indice = 'Indice de pobreza energetica';
+  KPI1title = 'Indice de pobreza energetica';
+  KPI2title = 'Total de viviendas';
+  KPI3title = 'Cantidad de Generadores';
+  KPI4title = 'Capacidad de Generación';
 
   noElectrificadosData : NoElectrificados[] = [];
 
@@ -75,6 +78,12 @@ export class DasherComponent implements OnInit {
         console.error('Error fetching CSV data: ', error);
       }
     );
+  }
+
+  onSelect(event: any): void {
+    var selectedIndex = event.selection[0].row;
+    this.selectedProvince = String(this.myData[selectedIndex][0]);
+    console.log("onSelectTrigger: "+this.selectedProvince);
   }
 
 }
