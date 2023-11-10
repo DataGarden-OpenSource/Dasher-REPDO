@@ -9,12 +9,14 @@ import { SharedModule } from './shared/shared.module';
 import { NoElectrificadoChartComponent } from './dashboard/dasher/no-electrificado-chart/no-electrificado-chart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { GeneradoresChartComponent } from './dashboard/dasher/generadores-chart/generadores-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DasherComponent,
-    NoElectrificadoChartComponent
+    NoElectrificadoChartComponent,
+    GeneradoresChartComponent
   ],
   imports: [
     BrowserModule,

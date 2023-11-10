@@ -1,5 +1,8 @@
+import { IndicePobreza, mapIndicePobreza } from './../../core/models/indice-pobreza';
+import { ResumenVivienda, mapResumenVivienda } from './../../core/models/vivienda';
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
+import { Generador, mapGenerador } from 'src/app/core/models/generadores';
 import { NoElectrificados, mapNoElectrificados } from 'src/app/core/models/no-electrificados';
 import { CsvService } from 'src/app/services/csvreader.service';
 
@@ -63,13 +66,36 @@ export class DasherComponent implements OnInit {
   selectedProvince: string = 'Azua';
 
   KPI1title = 'Indice de pobreza energetica';
-  KPI2title = 'Total de viviendas';
-  KPI3title = 'Cantidad de Generadores';
-  KPI4title = 'Capacidad de Generación';
+  KPI2title = 'Pobreza energetica rural';
+  KPI3title = 'Total de viviendas';
+  KPI4title = 'Cantidad de Generadores';
+
+  KPI1value = 0;
+  KPI2value = 0;
+  KPI3value = 0;
+  KPI4value = 0;
 
   noElectrificadosData : NoElectrificados[] = [];
+  generadoresData: Generador[] = [];
+  resumenViviendaData: ResumenVivienda[] = [];
+  IndicePobrezaData: IndicePobreza[] = [];
 
   ngOnInit(): void {
+    this.loadNoElectrificados();
+    this.loadGeneradores();
+    this.loadIndiceEnergetico();
+    this.loadResumenVivienda();
+    this.loadKPIS();
+  }
+
+  onSelect(event: any): void {
+    var selectedIndex = event.selection[0].row;
+    this.selectedProvince = String(this.myData[selectedIndex][0]);
+    console.log("onSelectTrigger: "+this.selectedProvince);
+    this.loadKPIS();
+  }
+
+  loadNoElectrificados(){
     this.csvService.getCsvData<NoElectrificados>('assets/csv/no-electrificados.csv').subscribe(
       data => {;
         this.noElectrificadosData = data.map((item: NoElectrificados) => { return mapNoElectrificados(item) });
@@ -80,10 +106,47 @@ export class DasherComponent implements OnInit {
     );
   }
 
-  onSelect(event: any): void {
-    var selectedIndex = event.selection[0].row;
-    this.selectedProvince = String(this.myData[selectedIndex][0]);
-    console.log("onSelectTrigger: "+this.selectedProvince);
+  loadGeneradores(){
+    this.csvService.getCsvData<Generador>('assets/csv/generadores.csv').subscribe(
+      data => {;
+        this.generadoresData = data.map((item: Generador) => { return mapGenerador(item) });
+        console.log(this.generadoresData);
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
+  }
+
+  loadIndiceEnergetico(){
+    this.csvService.getCsvData<IndicePobreza>('assets/csv/indice-pobreza.csv').subscribe(
+      data => {;
+        this.IndicePobrezaData = data.map((item: IndicePobreza) => { return mapIndicePobreza(item) });
+        console.log(this.IndicePobrezaData);
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
+  }
+
+  loadResumenVivienda(){
+    this.csvService.getCsvData<ResumenVivienda>('assets/csv/resumen-vivienda.csv').subscribe(
+      data => {;
+        this.resumenViviendaData = data.map((item: ResumenVivienda) => { return mapResumenVivienda (item) });
+        console.log(this.resumenViviendaData);
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
+  }
+
+  loadKPIS(){
+    const selectedProvinceData = this.myData.find((item: any) => item[0] === this.selectedProvince);
+    if (selectedProvinceData) {
+      this.KPI1value = Number(selectedProvinceData[1]);
+    }
   }
 
 }
