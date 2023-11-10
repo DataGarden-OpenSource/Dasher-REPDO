@@ -143,10 +143,26 @@ export class DasherComponent implements OnInit {
   }
 
   loadKPIS(){
-    const selectedProvinceData = this.myData.find((item: any) => item[0] === this.selectedProvince);
-    if (selectedProvinceData) {
-      this.KPI1value = Number(selectedProvinceData[1]);
-    }
+    //get KPI1
+    this.IndicePobrezaData.find((item: any) => {
+      if (item.provincia === this.selectedProvince) {
+        this.KPI1value = item.total;
+      }
+    });
+    //get KPI2
+    this.IndicePobrezaData.find((item: IndicePobreza) => {
+      if(item.provincia === this.selectedProvince){
+        this.KPI2value = item.rural;
+      }
+    });
+    //get KPI3
+    this.resumenViviendaData.find((item: ResumenVivienda) => {
+      if(item.provincia === this.selectedProvince){
+        this.KPI3value = item.viviendasParticulares+item.viviendasColectivas;
+      }
+    });
+
+
   }
 
 }
