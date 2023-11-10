@@ -65,6 +65,7 @@ export class NoElectrificadoChartComponent implements OnInit, OnChanges {
       series: [{
         type: 'pie',
         name: 'Porcentaje',
+        size: '80%',
         data: [
           {
             name: 'Electrificados',

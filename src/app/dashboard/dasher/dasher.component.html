@@ -18,13 +18,7 @@
       </div>
     </div>
     <div class="col-3">
-      <!-- grafico torta-->
-      <div class="card" style="height: 300px;">
-        <div class="card-header">Centrales Generadoras</div>
-        <div class="card-body">
-          <!--grafico torta-->
-        </div>
-      </div>
+      <app-generadores-chart [generadoresData]="generadoresData" [selectedProvince]="selectedProvince"></app-generadores-chart>
     </div>
     <div class="col-3">
       <app-no-electrificado-chart [noElectrificadosData]="noElectrificadosData" [selectedProvince]="selectedProvince"></app-no-electrificado-chart>

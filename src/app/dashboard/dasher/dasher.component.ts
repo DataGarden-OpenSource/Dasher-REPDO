@@ -65,9 +65,9 @@ export class DasherComponent implements OnInit {
 
   selectedProvince: string = 'Azua';
 
-  KPI1title = 'Indice de pobreza energetica';
+  KPI1title = 'Pobreza energetica';
   KPI2title = 'Pobreza energetica rural';
-  KPI3title = 'Total de viviendas';
+  KPI3title = 'Viviendas totales';
   KPI4title = 'Cantidad de Generadores';
 
   KPI1value = 0;
@@ -146,13 +146,13 @@ export class DasherComponent implements OnInit {
     //get KPI1
     this.IndicePobrezaData.find((item: any) => {
       if (item.provincia === this.selectedProvince) {
-        this.KPI1value = item.total;
+        this.KPI1value = item.total.toFixed(3);
       }
     });
     //get KPI2
-    this.IndicePobrezaData.find((item: IndicePobreza) => {
+    this.IndicePobrezaData.find((item: any) => {
       if(item.provincia === this.selectedProvince){
-        this.KPI2value = item.rural;
+        this.KPI2value = item.rural.toFixed(3);
       }
     });
     //get KPI3
@@ -161,7 +161,13 @@ export class DasherComponent implements OnInit {
         this.KPI3value = item.viviendasParticulares+item.viviendasColectivas;
       }
     });
-
+    //get KPI4
+    this.KPI4value = 0;
+    this.generadoresData.forEach((item: Generador) => {
+      if(item.provincia === this.selectedProvince){
+        this.KPI4value += 1;
+      }
+    });
 
   }
 

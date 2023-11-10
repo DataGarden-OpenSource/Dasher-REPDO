@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { Generador } from 'src/app/core/models/generadores';
 import { NoElectrificados } from 'src/app/core/models/no-electrificados';
 import { CsvService } from 'src/app/services/csvreader.service';
 
@@ -9,20 +10,20 @@ import { CsvService } from 'src/app/services/csvreader.service';
   styleUrls: ['./generadores-chart.component.scss']
 })
 export class GeneradoresChartComponent implements OnInit , OnChanges {
-  @Input() title: string = 'Viviendas no Electrificadas de ';
+  @Input() title: string = 'Centrales Generadoras en ';
   @Input() selectedProvince: string = 'Azua';
-  @Input() noElectrificadosData: NoElectrificados[] = [];
+  @Input() generadoresData: Generador[] = [];
 
   public Highcharts: typeof Highcharts = Highcharts; // required
   public chartOptions: Highcharts.Options = {};
 
-  provinceData : NoElectrificados | undefined;
+  provinceData : Generador[] | undefined;
 
   constructor(private csvService: CsvService) {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['noElectrificadosData']||changes['selectedProvince']){
+    if(changes['generadoresData']||changes['selectedProvince']){
       this.loadChart();
     }
   }
@@ -32,7 +33,28 @@ export class GeneradoresChartComponent implements OnInit , OnChanges {
   }
 
   loadChart(){
-    this.provinceData = this.noElectrificadosData.find((item: NoElectrificados) => item.provincia === this.selectedProvince);
+
+    this.provinceData = this.generadoresData.filter((item: Generador) => {
+      return item.provincia === this.selectedProvince;
+    });
+
+    var fuentes;
+    var conteo: Record<string, number> = {};
+    if(this.provinceData.length > 0){
+      fuentes = this.provinceData.map((item: Generador) => {
+        return item.clasific;
+      });
+
+      fuentes.forEach((fuente) => {
+        if (conteo[fuente]) {
+          conteo[fuente]++;
+        } else {
+          conteo[fuente] = 1;
+        }
+      });
+    }
+
+    console.log(conteo);
 
     this.chartOptions = {
       chart: {
@@ -63,21 +85,34 @@ export class GeneradoresChartComponent implements OnInit , OnChanges {
       },
       series: [{
         type: 'pie',
-        name: 'Porcentaje',
-        data: [
+        size: '80%',
+        innerSize: '80%',
+        data: this.provinceData.length <= 0 ?
+        [
           {
-            name: 'Electrificados',
-            y: 1 - this.provinceData?.noElectrificados!,
-            value: 1 - this.provinceData?.noElectrificados!// example to select a specific area
-          },
-          {
-            name: 'No Electrificados',
-            y: this.provinceData?.noElectrificados,
-            value: this.provinceData?.noElectrificados// example to select a specific area
+            name: 'Generadores',
+            y:0,
+            value:0
           }
         ]
+        : this.getSeries(conteo)
       }]
     };
+  }
+
+  getSeries(conteo: any){
+    var series = [];
+    for (const key in conteo) {
+      if (Object.prototype.hasOwnProperty.call(conteo, key)) {
+        const element = conteo[key];
+        series.push({
+          name: key,
+          y: element,
+          value: element
+        });
+      }
+    }
+    return series;
   }
 }
 
