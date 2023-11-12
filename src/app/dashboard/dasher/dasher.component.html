@@ -1,7 +1,7 @@
 <div class="container-fluid vh-100" style="background-color: #81d4fa;">
   <div class="row align-items-center">
     <div class="col-5">
-      <iframe src="https://datos.bancomundial.org/share/widget?end=2021&indicators=EG.ELC.ACCS.ZS&locations=ZJ-DO&start=1991&view=chart" width='450' height='300' frameBorder='0' scrolling="no" ></iframe>
+      <app-acceso-line-chart [accesoElectricidadData]="accesoElectricidadData" [title]="lineChart1Title"></app-acceso-line-chart>
     </div>
     <div class="col-7 justify-content-center">
           <google-chart [options]="myOptions" [type]="myType" [data]="myData" [columns]="chartColumns" (select)="onSelect($event)"></google-chart>

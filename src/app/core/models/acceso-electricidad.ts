@@ -16,11 +16,11 @@ export function mapToAccesoElectricidad(row: any): AccesoElectricidad {
   };
 
   // Iterar sobre cada año en la fila
-  for (let year = 1960; year <= 2022; year++) {
+  for (let year = 1990; year <= 2022; year++) {
       const value = row[year.toString()];
       accesoElectricidad.years.push({
           year: year,
-          value: value !== '' ? parseFloat(value) : null
+          value: value !== '' ? parseFloat(parseFloat(value).toFixed(2)) : null
       });
   }
 

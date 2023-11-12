@@ -1,8 +1,10 @@
+import { AccesoElectricidad, mapToAccesoElectricidad } from './../../core/models/acceso-electricidad';
 import { IndicePobreza, mapIndicePobreza } from './../../core/models/indice-pobreza';
 import { ResumenVivienda, mapResumenVivienda } from './../../core/models/vivienda';
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
 import { Generador, mapGenerador } from 'src/app/core/models/generadores';
+import { InfantMortalityRate, mapToInfantMortalityRate } from 'src/app/core/models/indice-mortalidad';
 import { NoElectrificados, mapNoElectrificados } from 'src/app/core/models/no-electrificados';
 import { CsvService } from 'src/app/services/csvreader.service';
 
@@ -69,6 +71,8 @@ export class DasherComponent implements OnInit {
   KPI2title = 'Pobreza energetica rural';
   KPI3title = 'Viviendas totales';
   KPI4title = 'Cantidad de Generadores';
+  lineChart1Title = 'Acceso a la electricidad (% de población)';
+  lineChart2Title = 'Indice de mortalidad infantil';
 
   KPI1value = 0;
   KPI2value = 0;
@@ -79,6 +83,9 @@ export class DasherComponent implements OnInit {
   generadoresData: Generador[] = [];
   resumenViviendaData: ResumenVivienda[] = [];
   IndicePobrezaData: IndicePobreza[] = [];
+  accesoElectricidadData: any[] = [];
+  indiceMortalidadData: any[] = [];
+
 
   ngOnInit(): void {
     this.loadNoElectrificados();
@@ -86,6 +93,7 @@ export class DasherComponent implements OnInit {
     this.loadIndiceEnergetico();
     this.loadResumenVivienda();
     this.loadKPIS();
+    this.loadLineCharts();
   }
 
   onSelect(event: any): void {
@@ -169,6 +177,35 @@ export class DasherComponent implements OnInit {
       }
     });
 
+  }
+
+  loadLineCharts(){
+    this.csvService.getCsvData<AccesoElectricidad>('assets/csv/acceso-electricidad.csv').subscribe(
+      data => {;
+        this.accesoElectricidadData = data.map((item: AccesoElectricidad) => { return mapToAccesoElectricidad(item) });
+
+        console.log(this.accesoElectricidadData);
+
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
+
+    this.csvService.getCsvData<InfantMortalityRate>('assets/csv/infant_mortality_rates.csv').subscribe(
+      data => {
+        this.indiceMortalidadData = data.map((item: InfantMortalityRate) => {
+          return {
+            name: 'república dominicana',
+            data: data.map((yearData: any) => [yearData['year'], yearData['mortalityRate']])
+          };
+        });
+        console.log(this.indiceMortalidadData);
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
   }
 
 }

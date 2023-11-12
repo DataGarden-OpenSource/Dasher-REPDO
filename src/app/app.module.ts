@@ -11,6 +11,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneradoresChartComponent } from './dashboard/dasher/generadores-chart/generadores-chart.component';
 import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.component';
+import { AccesoLineChartComponent } from './dashboard/dasher/acceso-line-chart/acceso-line-chart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.c
     DasherComponent,
     NoElectrificadoChartComponent,
     GeneradoresChartComponent,
-    RegionDasherComponent
+    RegionDasherComponent,
+    AccesoLineChartComponent
   ],
   imports: [
     BrowserModule,
