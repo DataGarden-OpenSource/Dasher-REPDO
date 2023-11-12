@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GeneradoresChartComponent } from './dashboard/dasher/generadores-chart/generadores-chart.component';
 import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.component';
 import { AccesoLineChartComponent } from './dashboard/dasher/acceso-line-chart/acceso-line-chart.component';
+import { MunicipioTableComponent } from './dashboard/region-dasher/municipio-table/municipio-table.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AccesoLineChartComponent } from './dashboard/dasher/acceso-line-chart/a
     NoElectrificadoChartComponent,
     GeneradoresChartComponent,
     RegionDasherComponent,
-    AccesoLineChartComponent
+    AccesoLineChartComponent,
+    MunicipioTableComponent
   ],
   imports: [
     BrowserModule,

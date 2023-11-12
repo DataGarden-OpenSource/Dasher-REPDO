@@ -183,9 +183,7 @@ export class DasherComponent implements OnInit {
     this.csvService.getCsvData<AccesoElectricidad>('assets/csv/acceso-electricidad.csv').subscribe(
       data => {;
         this.accesoElectricidadData = data.map((item: AccesoElectricidad) => { return mapToAccesoElectricidad(item) });
-
         console.log(this.accesoElectricidadData);
-
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -194,12 +192,13 @@ export class DasherComponent implements OnInit {
 
     this.csvService.getCsvData<InfantMortalityRate>('assets/csv/infant_mortality_rates.csv').subscribe(
       data => {
-        this.indiceMortalidadData = data.map((item: InfantMortalityRate) => {
-          return {
-            name: 'república dominicana',
-            data: data.map((yearData: any) => [yearData['year'], yearData['mortalityRate']])
-          };
-        });
+        var indiceMortalidad = data.map((item: InfantMortalityRate) => { return mapToInfantMortalityRate(item) });
+        this.indiceMortalidadData = [{
+          'name': 'República Dominicana',
+          'data': indiceMortalidad.map((item: InfantMortalityRate) => {
+            return [item.year, item.mortalityRate];
+          })
+        }]
         console.log(this.indiceMortalidadData);
       },
       error => {

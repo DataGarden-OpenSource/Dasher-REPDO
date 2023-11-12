@@ -1,0 +1,26 @@
+<div class="container mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Municipio/Distrito</th>
+        <th scope="col">Total</th>
+        <th scope="col">Hombres</th>
+        <th scope="col">Mujeres</th>
+        <th scope="col">Urbana</th>
+        <th scope="col">Rural</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of csvData; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ item['Municipio/Distrito'] }}</td>
+        <td>{{ item.Total }}</td>
+        <td>{{ item.Hombres }}</td>
+        <td>{{ item.Mujeres }}</td>
+        <td>{{ item.Urbana }}</td>
+        <td>{{ item.Rural }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
