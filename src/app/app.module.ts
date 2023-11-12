@@ -10,13 +10,15 @@ import { NoElectrificadoChartComponent } from './dashboard/dasher/no-electrifica
 import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneradoresChartComponent } from './dashboard/dasher/generadores-chart/generadores-chart.component';
+import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DasherComponent,
     NoElectrificadoChartComponent,
-    GeneradoresChartComponent
+    GeneradoresChartComponent,
+    RegionDasherComponent
   ],
   imports: [
     BrowserModule,
