@@ -1,0 +1,21 @@
+
+.nav-item {
+  cursor: pointer;
+  //background-color: blue;
+}
+
+button {
+  background-color: rgb(13, 110, 253);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+// BEGIN: Active Nav Item
+button.active {
+  background-color: rgb(4, 55, 131);
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+}
+// END: Active Nav Item

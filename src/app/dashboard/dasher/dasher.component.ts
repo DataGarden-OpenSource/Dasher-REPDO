@@ -62,7 +62,7 @@ export class DasherComponent implements OnInit {
     displayMode: 'regions',
     resolution: 'provinces',
     colorAxis: { minValue: 0, maxValue: 100, colors: ['green', 'yellow', 'red'] },
-    backgroundColor: '#81d4fa',
+    backgroundColor: { fill:'transparent' }
   }
 
   selectedProvince: string = 'Pedernales';

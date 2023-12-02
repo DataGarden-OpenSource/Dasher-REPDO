@@ -14,6 +14,9 @@ import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.c
 import { AccesoLineChartComponent } from './dashboard/dasher/acceso-line-chart/acceso-line-chart.component';
 import { MunicipioTableComponent } from './dashboard/region-dasher/municipio-table/municipio-table.component';
 import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
     RegionDasherComponent,
     AccesoLineChartComponent,
     MunicipioTableComponent,
-    SolargeoComponent
+    SolargeoComponent,
+    PdfViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,9 @@ import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
     HighchartsChartModule,
     HttpClientModule,
     GoogleChartsModule.forRoot({ mapsApiKey: 'AIzaSyCyg8PduZ1Av2zYlunDtl0w73vTGQmB48U' }),
+    NgxExtendedPdfViewerModule,
+    NgbModule,
+    NgbNavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
