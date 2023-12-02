@@ -65,14 +65,14 @@ export class DasherComponent implements OnInit {
     backgroundColor: '#81d4fa',
   }
 
-  selectedProvince: string = 'Azua';
+  selectedProvince: string = 'Pedernales';
 
   KPI1title = 'Pobreza energetica';
   KPI2title = 'Pobreza energetica rural';
   KPI3title = 'Viviendas totales';
   KPI4title = 'Cantidad de Generadores';
   lineChart1Title = 'Acceso a la electricidad (% de población)';
-  lineChart2Title = 'Indice de mortalidad infantil';
+  columnChartTitle = 'Cantidad de Centros de Salud';
 
   KPI1value = 0;
   KPI2value = 0;
@@ -88,12 +88,13 @@ export class DasherComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadIndiceEnergetico();
     this.loadNoElectrificados();
     this.loadGeneradores();
-    this.loadIndiceEnergetico();
     this.loadResumenVivienda();
     this.loadKPIS();
     this.loadLineCharts();
+    this.loadMapChart('masked');
   }
 
   onSelect(event: any): void {
@@ -205,6 +206,45 @@ export class DasherComponent implements OnInit {
         console.error('Error fetching CSV data: ', error);
       }
     );
+  }
+
+  loadMapChart(indice: string) {
+
+    var tempDataList: (string | number)[][] = [];
+
+    this.csvService.getCsvData<IndicePobreza>('assets/csv/indice-pobreza.csv').subscribe(
+      data => {;
+        this.IndicePobrezaData = data.map((item: IndicePobreza) => { return mapIndicePobreza(item) })
+        this.IndicePobrezaData.forEach((item: IndicePobreza) => {
+          switch (indice) {
+              case 'total':
+                tempDataList.push([item.provincia, item.total]);break;
+              case 'rural':
+                tempDataList.push([item.provincia, item.rural]);break;
+              case 'urbana':
+                tempDataList.push([item.provincia, item.urbana]);break;
+              case 'masked':
+                if(item.provincia === 'Pedernales') {tempDataList.push([item.provincia, item.rural]);break;}
+                tempDataList.push([item.provincia, item.urbana]);break;
+              default:
+                tempDataList.push([item.provincia, item.total]);break;
+            }
+          }
+        );
+        this.myData.forEach((item: any) => {
+          tempDataList.find((tempItem: any) => {
+            if (item[0] === tempItem[0]) {
+              item[1] = tempItem[1]*100;
+            }
+          });
+        });
+
+      },
+      error => {
+        console.error('Error fetching CSV data: ', error);
+      }
+    );
+
   }
 
 }

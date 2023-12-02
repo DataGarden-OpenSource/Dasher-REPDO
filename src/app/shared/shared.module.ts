@@ -4,6 +4,7 @@ import { KpiCardComponent } from './kpi-card/kpi-card.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CamelCaseFormatterPipe } from './pipes/camel-case-formatter.pipe';
+import { BarsChartComponent } from './bars-chart/bars-chart.component';
 
 
 
@@ -11,7 +12,8 @@ import { CamelCaseFormatterPipe } from './pipes/camel-case-formatter.pipe';
   declarations: [
     KpiCardComponent,
     LineChartComponent,
-    CamelCaseFormatterPipe
+    CamelCaseFormatterPipe,
+    BarsChartComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { CamelCaseFormatterPipe } from './pipes/camel-case-formatter.pipe';
   exports: [
     KpiCardComponent,
     LineChartComponent,
-    CamelCaseFormatterPipe
+    CamelCaseFormatterPipe,
+    BarsChartComponent
   ]
 })
 export class SharedModule { }

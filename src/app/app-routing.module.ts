@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DasherComponent } from './dashboard/dasher/dasher.component';
-import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.component';
+import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
 
 const routes: Routes = [
   {path:'', component:DasherComponent},
   {path:'dashboard', component:DasherComponent},
-  {path:'region', component:RegionDasherComponent}
+  {path:'solarmap', component:SolargeoComponent}
 ];
 
 @NgModule({

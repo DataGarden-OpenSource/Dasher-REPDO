@@ -13,6 +13,7 @@ import { GeneradoresChartComponent } from './dashboard/dasher/generadores-chart/
 import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.component';
 import { AccesoLineChartComponent } from './dashboard/dasher/acceso-line-chart/acceso-line-chart.component';
 import { MunicipioTableComponent } from './dashboard/region-dasher/municipio-table/municipio-table.component';
+import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MunicipioTableComponent } from './dashboard/region-dasher/municipio-tab
     GeneradoresChartComponent,
     RegionDasherComponent,
     AccesoLineChartComponent,
-    MunicipioTableComponent
+    MunicipioTableComponent,
+    SolargeoComponent
   ],
   imports: [
     BrowserModule,
