@@ -40,7 +40,8 @@ export class NoElectrificadoChartComponent implements OnInit, OnChanges {
         type: 'pie',
         plotBackgroundColor: undefined,
         plotBorderWidth: undefined,
-        plotShadow: false
+        plotShadow: false,
+        backgroundColor: 'transparent'
       },
       title: {
         text: this.title + this.selectedProvince

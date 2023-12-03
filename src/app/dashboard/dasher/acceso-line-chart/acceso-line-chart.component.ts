@@ -75,6 +75,7 @@ export class AccesoLineChartComponent implements OnInit, OnChanges {
     this.chartOptions = {
       chart: {
         type: 'line',
+        backgroundColor: 'transparent'
       },
       title: {
         text: this.title,

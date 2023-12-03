@@ -33,6 +33,7 @@ export class BarsChartComponent implements OnInit {
     this.chartOptions = {
       chart: {
         type: 'column',
+        backgroundColor: 'transparent'
       },
       title: {
         text: this.title,
