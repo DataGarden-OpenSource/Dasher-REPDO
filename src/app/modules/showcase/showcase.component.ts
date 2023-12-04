@@ -38,7 +38,8 @@ export class ShowcaseComponent implements OnInit {
     '../../../assets/img/proyecto-cooperacion/11.jpg',
     '../../../assets/img/proyecto-cooperacion/12.jpg',
     '../../../assets/img/proyecto-cooperacion/13.jpg',
-    '../../../assets/img/proyecto-cooperacion/14.jpg'
+    '../../../assets/img/proyecto-cooperacion/14.jpg',
+    '../../../assets/img/proyecto-cooperacion/15.jpg'
   ];
 
   constructor(@Inject(DOCUMENT) private document: any,

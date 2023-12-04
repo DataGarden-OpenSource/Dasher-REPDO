@@ -1,5 +1,5 @@
 <ngb-carousel #carousel>
-  <ng-template ngbSlide *ngFor="let image of imageList | slice:0:3 ">
+  <ng-template ngbSlide *ngFor="let image of imageList | slice:0:2 ">
     <div class="picsum-img-wrapper">
       <app-image-slide [imageUrl]="image"></app-image-slide>
     </div>
@@ -14,7 +14,7 @@
       <app-solargeo></app-solargeo>
     </div>
   </ng-template>
-  <ng-template ngbSlide *ngFor="let image of imageList | slice:3:14 ">
+  <ng-template ngbSlide *ngFor="let image of imageList | slice:2:16 ">
     <div class="picsum-img-wrapper">
       <app-image-slide [imageUrl]="image"></app-image-slide>
     </div>
