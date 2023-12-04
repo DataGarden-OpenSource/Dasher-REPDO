@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-solargeo',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./solargeo.component.scss']
 })
 export class SolargeoComponent implements OnInit {
+  public safeUrl: SafeResourceUrl;
+  isVisible = false;
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) {
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://globalsolaratlas.info/');
+   }
 
   ngOnInit(): void {
+  }
+
+  toggleCard() {
+    this.isVisible = !this.isVisible;
   }
 
 }

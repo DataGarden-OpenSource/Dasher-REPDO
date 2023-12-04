@@ -54,8 +54,6 @@ export class GeneradoresChartComponent implements OnInit , OnChanges {
       });
     }
 
-    console.log(conteo);
-
     this.chartOptions = {
       chart: {
         type: 'pie',

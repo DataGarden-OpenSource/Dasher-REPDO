@@ -1,14 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WORK IN PROGRESS</title>
-</head>
-<body>
-  <div class="container">
-    <h1>WORK IN PROGRESS</h1>
-    <p>Stay tuned for updates!</p>
-  </div>
-</body>
-</html>
+<div class="wrapper">
+  <img src="../../../assets/img/heatmap.png" class="solarmap" alt="" (click)="toggleCard()">
+  <div class="card solarmap-card" [class.d-none]="!isVisible">
+    <div class="card-body">
+      <h2>Pedernales</h2>
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Medición</th>
+                <th>Rango</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Producción específica de energía fotovoltaica</td>
+                <td>4.05 — 4.96 kWh/kWp</td>
+            </tr>
+            <tr>
+                <td>Irradiación normal directa</td>
+                <td>4.20 — 6.06 kWh/m2</td>
+            </tr>
+            <tr>
+                <td>Irradiación horizontal global</td>
+                <td>4.77 — 5.99 kWh/m2</td>
+            </tr>
+            <tr>
+                <td>Irradiación horizontal difusa</td>
+                <td>1.89 — 2.16 kWh/m2</td>
+            </tr>
+            <tr>
+                <td>Irradiación inclinada global</td>
+                <td>4.96 — 6.30 kWh/m2</td>
+            </tr>
+            <tr>
+                <td>Inclinación óptima de los módulos fotovoltaicos</td>
+                <td>17 — 20 °</td>
+            </tr>
+            <tr>
+                <td>Temperatura del aire</td>
+                <td>15.9 — 27.1 °C</td>
+            </tr>
+            <tr>
+                <td>Elevación del terreno</td>
+                <td>0 — 2225 m</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+

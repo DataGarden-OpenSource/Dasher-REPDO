@@ -60,11 +60,10 @@ export class AccesoLineChartComponent implements OnInit, OnChanges {
   loadChart() {
     // Convertir estos datos en series para Highcharts
     if (this.accesoElectricidadData.length > 0) {
-      this.acceso1 = this.accesoElectricidadData[0];
-      this.acceso2 = this.accesoElectricidadData[1];
+      this.acceso1 = this.accesoElectricidadData[1];
     }
 
-    this.series = [this.acceso1, this.acceso2].map((acceso) => ({
+    this.series = [this.acceso1].map((acceso) => ({
       name: acceso.countryName,
       data: acceso.years.map((yearData) => [
         yearData.year,

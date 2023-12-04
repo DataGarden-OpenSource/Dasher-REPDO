@@ -3,6 +3,6 @@
     {{titleLabel}}
   </div>
   <div class="card-body p-0 pt-2">
-    <h5 class="card-title">{{value}}</h5>
+    <h5 class="card-title">{{value}} <span *ngIf="unit == 'porcentaje'">%</span></h5>
   </div>
 </div>

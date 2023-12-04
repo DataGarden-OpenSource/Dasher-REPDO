@@ -1,5 +1,7 @@
-<ngx-extended-pdf-viewer [src]="'/assets/pdf/Proyecto-Cooperacion.pdf'"
+<ngx-extended-pdf-viewer [src]="'../../assets/pdf/proyecto-cooperacion.pdf'"
   [useBrowserLocale]="true"
   [showPresentationModeButton]="true"
+  [(page)]="page"
+  (pageChange)="onPageChanged($event)"
   >
 </ngx-extended-pdf-viewer>

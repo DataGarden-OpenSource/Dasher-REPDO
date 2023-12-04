@@ -11,6 +11,7 @@ export class KpiCardComponent implements OnInit {
   @Input() color = '';
   @Input() icon = '';
   @Input() value = 0;
+  @Input() unit = '';
 
   constructor() { }
 

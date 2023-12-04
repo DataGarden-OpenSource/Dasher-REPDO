@@ -13,11 +13,25 @@ export class AppComponent {
   title = 'rep-chartjs';
   tabNumber = 2;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    if (localStorage.getItem('tabnumber')) {
+      this.tabNumber = Number(localStorage.getItem('tabnumber'));
+    }
+  }
 
   changeTabNumber(tabNumber: number) {
     this.tabNumber = tabNumber;
+
+    if (this.tabNumber > 3) {
+      this.tabNumber = 1;
+    }
+
+    if (this.tabNumber < 1){
+      this.tabNumber = 3;
+    }
+
     console.log("tabnumber", this.tabNumber);
+    localStorage.setItem('tabnumber', this.tabNumber.toString());
 
     switch (this.tabNumber) {
       case 1:

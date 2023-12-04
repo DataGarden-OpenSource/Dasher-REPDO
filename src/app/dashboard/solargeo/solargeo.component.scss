@@ -21,3 +21,17 @@ p {
   font-size: 24px;
   color: #666;
 }
+
+.solarmap{
+  width: 100%;
+  height: calc(100vh - 45px);
+}
+
+.solarmap-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  z-index: 1050; /* higher than most elements */
+}

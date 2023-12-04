@@ -1,3 +1,4 @@
+import { parse } from './../../../../node_modules/postcss/lib/postcss.d';
 import { AccesoElectricidad, mapToAccesoElectricidad } from './../../core/models/acceso-electricidad';
 import { IndicePobreza, mapIndicePobreza } from './../../core/models/indice-pobreza';
 import { ResumenVivienda, mapResumenVivienda } from './../../core/models/vivienda';
@@ -15,43 +16,51 @@ import { CsvService } from 'src/app/services/csvreader.service';
 })
 export class DasherComponent implements OnInit {
 
-  constructor(private csvService: CsvService) { }
+  constructor(private csvService: CsvService) {
+    this.loadIndiceEnergetico();
+    this.loadNoElectrificados();
+    this.loadGeneradores();
+    this.loadResumenVivienda();
+    this.loadKPIS();
+    this.loadLineCharts();
+    this.loadMapChart('masked');
+  }
 
   myType = ChartType.GeoChart
 
   myData = [
-    ['Azua', 63.5],
-    ['Baoruco', 65.4],
-    ['Barahona', 61.1],
-    ['Dajabón', 54.3],
+    ['Azua', 58.1],
+    ['Baoruco', 57.2],
+    ['Barahona', 56.3],
+    ['Dajabón', 45.6],
     ['Distrito Nacional', 28.3],
-    ['Duarte', 46.6],
-    ['El Seibo', 68.3],
-    ['Elías Piña', 79.3],
-    ['Espaillat', 42.8],
-    ['Hato Mayor', 59.9],
-    ['Hermanas Mirabal', 44.3],
-    ['Independencia', 63.8],
-    ['La Altagracia', 53.4],
-    ['La Romana', 46.1],
-    ['La Vega', 44.6],
-    ['María Trinidad Sánchez', 47.8],
-    ['Monseñor Nouel', 40.4],
-    ['Monte Cristi', 59.7],
-    ['Monte Plata', 63.5],
-    ['Pedernales', 71.7],
-    ['Peravia', 47.4],
-    ['Puerto Plata', 47.5],
-    ['Samaná', 54.3],
-    ['San Cristóbal', 48.6],
-    ['San José de Ocoa', 64.5],
-    ['San Juan', 60.7],
-    ['San Pedro de Macorís', 49.9],
-    ['Sánchez Ramírez', 48.3],
-    ['Santiago', 36.4],
-    ['Santiago Rodríguez', 50.2],
-    ['Santo Domingo', 36.2],
-    ['Valverde', 51.1]
+    ['Duarte', 59.4],
+    ['El Seibo', 61.7],
+    ['Elías Piña', 64.7],
+    ['Espaillat', 41.4],
+    ['Hato Mayor', 55.5],
+    ['Hermanas Mirabal', 50.0],
+    ['Independencia', 62.2],
+    ['La Altagracia', 51.2],
+    ['La Romana', 43.0],
+    ['La Vega', 49.7],
+    ['María Trinidad Sánchez', 54.6],
+    ['Monseñor Nouel', 48.5],
+    ['Monte Cristi', 53.7],
+    ['Monte Plata', 58.1],
+    ['Pedernales', 92.10],
+    ['Peravia', 49.3],
+    ['Puerto Plata', 50.0],
+    ['Samaná', 55.1],
+    ['San Cristóbal', 51.1],
+    ['San José de Ocoa', 58.5],
+    ['San Juan', 56.4],
+    ['San Pedro de Macorís', 47.8],
+    ['Sánchez Ramírez', 54.3],
+    ['Santiago', 35.6],
+    ['Santiago Rodríguez', 53.5],
+    ['Santo Domingo', 35.4],
+    ['Valverde', 54.4]
   ];
 
   chartColumns = ['Provincia', 'Indice de Pobreza Energética'];
@@ -88,19 +97,12 @@ export class DasherComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadIndiceEnergetico();
-    this.loadNoElectrificados();
-    this.loadGeneradores();
-    this.loadResumenVivienda();
-    this.loadKPIS();
-    this.loadLineCharts();
-    this.loadMapChart('masked');
+
   }
 
   onSelect(event: any): void {
     var selectedIndex = event.selection[0].row;
     this.selectedProvince = String(this.myData[selectedIndex][0]);
-    console.log("onSelectTrigger: "+this.selectedProvince);
     this.loadKPIS();
   }
 
@@ -108,6 +110,7 @@ export class DasherComponent implements OnInit {
     this.csvService.getCsvData<NoElectrificados>('assets/csv/no-electrificados.csv').subscribe(
       data => {;
         this.noElectrificadosData = data.map((item: NoElectrificados) => { return mapNoElectrificados(item) });
+        this.loadKPIS();
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -119,7 +122,7 @@ export class DasherComponent implements OnInit {
     this.csvService.getCsvData<Generador>('assets/csv/generadores.csv').subscribe(
       data => {;
         this.generadoresData = data.map((item: Generador) => { return mapGenerador(item) });
-        console.log(this.generadoresData);
+        this.loadKPIS();
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -131,7 +134,7 @@ export class DasherComponent implements OnInit {
     this.csvService.getCsvData<IndicePobreza>('assets/csv/indice-pobreza.csv').subscribe(
       data => {;
         this.IndicePobrezaData = data.map((item: IndicePobreza) => { return mapIndicePobreza(item) });
-        console.log(this.IndicePobrezaData);
+        this.loadKPIS();
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -143,7 +146,6 @@ export class DasherComponent implements OnInit {
     this.csvService.getCsvData<ResumenVivienda>('assets/csv/resumen-vivienda.csv').subscribe(
       data => {;
         this.resumenViviendaData = data.map((item: ResumenVivienda) => { return mapResumenVivienda (item) });
-        console.log(this.resumenViviendaData);
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -155,13 +157,13 @@ export class DasherComponent implements OnInit {
     //get KPI1
     this.IndicePobrezaData.find((item: any) => {
       if (item.provincia === this.selectedProvince) {
-        this.KPI1value = item.total.toFixed(3);
+        this.KPI1value = parseFloat ((item.total * 100).toFixed(3));
       }
     });
     //get KPI2
     this.IndicePobrezaData.find((item: any) => {
       if(item.provincia === this.selectedProvince){
-        this.KPI2value = item.rural.toFixed(3);
+        this.KPI2value = parseFloat((item.rural * 100).toFixed(3));
       }
     });
     //get KPI3
@@ -184,7 +186,7 @@ export class DasherComponent implements OnInit {
     this.csvService.getCsvData<AccesoElectricidad>('assets/csv/acceso-electricidad.csv').subscribe(
       data => {;
         this.accesoElectricidadData = data.map((item: AccesoElectricidad) => { return mapToAccesoElectricidad(item) });
-        console.log(this.accesoElectricidadData);
+        this.loadKPIS();
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -200,7 +202,6 @@ export class DasherComponent implements OnInit {
             return [item.year, item.mortalityRate];
           })
         }]
-        console.log(this.indiceMortalidadData);
       },
       error => {
         console.error('Error fetching CSV data: ', error);
@@ -231,12 +232,12 @@ export class DasherComponent implements OnInit {
             }
           }
         );
+
         this.myData.forEach((item: any) => {
-          tempDataList.find((tempItem: any) => {
-            if (item[0] === tempItem[0]) {
-              item[1] = tempItem[1]*100;
-            }
-          });
+          const tempItem = tempDataList.find((tempItem: any) => item[0] === tempItem[0]);
+          if (tempItem) {
+            item[1] = Number(tempItem[1]) * 100;
+          }
         });
 
       },
