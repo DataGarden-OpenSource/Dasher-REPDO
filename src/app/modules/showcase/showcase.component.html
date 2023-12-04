@@ -1,0 +1,25 @@
+<ngb-carousel #carousel>
+  <ng-template ngbSlide *ngFor="let image of imageList | slice:0:3 ">
+    <div class="picsum-img-wrapper">
+      <app-image-slide [imageUrl]="image"></app-image-slide>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide >
+    <div class="picsum-img-wrapper">
+      <app-dasher></app-dasher>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide >
+    <div class="picsum-img-wrapper">
+      <app-solargeo></app-solargeo>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide *ngFor="let image of imageList | slice:3:14 ">
+    <div class="picsum-img-wrapper">
+      <app-image-slide [imageUrl]="image"></app-image-slide>
+    </div>
+  </ng-template>
+</ngb-carousel>
+<button class="float-fullscreen" (click)="openFullscreen()" *ngIf="!isFullScreen" ><i class="bi bi-fullscreen"></i></button>
+<button class="float-fullscreen" (click)="closeFullscreen()" *ngIf="isFullScreen" ><i class="bi bi-fullscreen-exit"></i></button>
+<button class="float-backhome" (click)="backHome()" ><i class="bi bi-house-door-fill"></i></button>

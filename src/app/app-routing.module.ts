@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DasherComponent } from './dashboard/dasher/dasher.component';
-import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
-import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { DasherComponent } from './modules/dashboard/dasher/dasher.component';
+import { SolargeoComponent } from './modules/dashboard/solargeo/solargeo.component';
+import { PdfViewerComponent } from './modules/pdf-viewer/pdf-viewer.component';
+import { ShowcaseComponent } from './modules/showcase/showcase.component';
 
 const routes: Routes = [
   {path:'', component:DasherComponent},
   {path:'presenter',component: PdfViewerComponent},
   {path:'dashboard', component:DasherComponent},
-  {path:'solarmap', component:SolargeoComponent}
+  {path:'solarmap', component:SolargeoComponent},
+  {path:'showcase', component:ShowcaseComponent}
 ];
 
 @NgModule({

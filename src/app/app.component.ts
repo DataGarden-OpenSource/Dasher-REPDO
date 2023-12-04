@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,13 +9,23 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.scss'],
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  hiddenNav = false;
   title = 'rep-chartjs';
   tabNumber = 2;
 
   constructor(private router: Router) {
     if (localStorage.getItem('tabnumber')) {
       this.tabNumber = Number(localStorage.getItem('tabnumber'));
+    }
+    if (localStorage.getItem('hiddenNav')) {
+      this.hiddenNav = localStorage.getItem('hiddenNav')== 'true' ? true : false;
+    }
+  }
+
+  ngOnInit(): void {
+    if (localStorage.getItem('hiddenNav')) {
+      this.hiddenNav = localStorage.getItem('hiddenNav') == 'true' ? true : false;
     }
   }
 
@@ -45,6 +55,18 @@ export class AppComponent {
         break;
       default:
         break;
+    }
+  }
+
+  showcase() {
+    this.router.navigate(['/showcase']);
+    this.hiddenNav = true;
+    localStorage.setItem('hiddenNav', this.hiddenNav.toString());
+  }
+
+  changeOfRoutes() {
+    if (localStorage.getItem('hiddenNav')) {
+     this.hiddenNav = localStorage.getItem('hiddenNav') == 'true' ? true : false;
     }
   }
 }

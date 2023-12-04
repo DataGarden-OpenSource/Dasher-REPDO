@@ -1,7 +1,7 @@
-import { parse } from './../../../../node_modules/postcss/lib/postcss.d';
-import { AccesoElectricidad, mapToAccesoElectricidad } from './../../core/models/acceso-electricidad';
-import { IndicePobreza, mapIndicePobreza } from './../../core/models/indice-pobreza';
-import { ResumenVivienda, mapResumenVivienda } from './../../core/models/vivienda';
+import { parse } from 'postcss';
+import { AccesoElectricidad, mapToAccesoElectricidad } from '../../../core/models/acceso-electricidad';
+import { IndicePobreza, mapIndicePobreza } from '../../../core/models/indice-pobreza';
+import { ResumenVivienda, mapResumenVivienda } from '../../../core/models/vivienda';
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
 import { Generador, mapGenerador } from 'src/app/core/models/generadores';

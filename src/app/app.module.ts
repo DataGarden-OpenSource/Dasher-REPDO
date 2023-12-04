@@ -4,19 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GoogleChartsModule } from 'angular-google-charts';
-import { DasherComponent } from './dashboard/dasher/dasher.component';
+import { DasherComponent } from './modules/dashboard/dasher/dasher.component';
 import { SharedModule } from './shared/shared.module';
-import { NoElectrificadoChartComponent } from './dashboard/dasher/no-electrificado-chart/no-electrificado-chart.component';
+import { NoElectrificadoChartComponent } from './modules/dashboard/dasher/no-electrificado-chart/no-electrificado-chart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { GeneradoresChartComponent } from './dashboard/dasher/generadores-chart/generadores-chart.component';
-import { RegionDasherComponent } from './dashboard/region-dasher/region-dasher.component';
-import { AccesoLineChartComponent } from './dashboard/dasher/acceso-line-chart/acceso-line-chart.component';
-import { MunicipioTableComponent } from './dashboard/region-dasher/municipio-table/municipio-table.component';
-import { SolargeoComponent } from './dashboard/solargeo/solargeo.component';
+import { GeneradoresChartComponent } from './modules/dashboard/dasher/generadores-chart/generadores-chart.component';
+import { RegionDasherComponent } from './modules/dashboard/region-dasher/region-dasher.component';
+import { AccesoLineChartComponent } from './modules/dashboard/dasher/acceso-line-chart/acceso-line-chart.component';
+import { MunicipioTableComponent } from './modules/dashboard/region-dasher/municipio-table/municipio-table.component';
+import { SolargeoComponent } from './modules/dashboard/solargeo/solargeo.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { PdfViewerComponent } from './modules/pdf-viewer/pdf-viewer.component';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShowcaseComponent } from './modules/showcase/showcase.component';
+import { ImageSlideComponent } from './modules/showcase/image-slide/image-slide.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
     AccesoLineChartComponent,
     MunicipioTableComponent,
     SolargeoComponent,
-    PdfViewerComponent
+    PdfViewerComponent,
+    ShowcaseComponent,
+    ImageSlideComponent
   ],
   imports: [
     BrowserModule,
